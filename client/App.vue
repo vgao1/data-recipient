@@ -25,20 +25,20 @@ onBeforeMount(async () => {
   <header>
     <nav>
       <div class="title">
-        <img src="@/assets/images/logo.png" />
+        <img src="@/assets/images/logo.svg" />
         <RouterLink :to="{ name: 'Home' }">
           <h1>Data Recipient Dashboard</h1>
         </RouterLink>
       </div>
       <ul>
         <li>
-          <RouterLink :to="{ name: 'Home' }" :class="{ underline: currentRouteName == 'Home' }"> <b> HOME </b> </RouterLink>
+          <RouterLink :to="{ name: 'Home' }" :class="{ underline: currentRouteName == 'Home' }"> Home </RouterLink>
         </li>
         <li v-if="isLoggedIn">
-          <RouterLink :to="{ name: 'Settings' }" :class="{ underline: currentRouteName == 'Settings' }">  <b>SETTINGS </b></RouterLink>
+          <RouterLink :to="{ name: 'Settings' }" :class="{ underline: currentRouteName == 'Settings' }"> Settings </RouterLink>
         </li>
         <li v-else>
-          <RouterLink :to="{ name: 'Login' }" :class="{ underline: currentRouteName == 'Login' }"> <b> LOGIN </b></RouterLink>
+          <RouterLink :to="{ name: 'Login' }" :class="{ underline: currentRouteName == 'Login' }"> Login </RouterLink>
         </li>
       </ul>
     </nav>
@@ -54,14 +54,13 @@ onBeforeMount(async () => {
 
 nav {
   padding: 1em 2em;
-  background-color: #caedce;
+  background-color: lightgray;
   display: flex;
   align-items: center;
 }
 
 h1 {
-  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  font-size: 28px;
+  font-size: 2em;
   margin: 0;
 }
 
@@ -72,12 +71,12 @@ h1 {
 }
 
 img {
-  height: 3em;
+  height: 2em;
 }
 
 a {
   font-size: large;
-  color: #156b12;
+  color: black;
   text-decoration: none;
 }
 
@@ -88,9 +87,6 @@ ul {
   align-items: center;
   flex-direction: row;
   gap: 1em;
-  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  font-size: 16px;
-  color: #156b12;
 }
 
 .underline {

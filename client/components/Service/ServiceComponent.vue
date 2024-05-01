@@ -41,7 +41,6 @@ onBeforeMount(async () => {
 </script>
 <template>
   <div class="row">
-
     <section class="services" v-if="loaded && props.allServices.length !== 0">
       <article v-for="service in props.allServices" :key="service._id">
         <img class="logo-pic" v-if="service.logoURL !== null" :src="service.logoURL" />
@@ -57,9 +56,7 @@ onBeforeMount(async () => {
         </div>
       </article>
     </section>
-
-</div>
-
+  </div>
 </template>
 <style>
 .logo-pic {
@@ -67,73 +64,41 @@ onBeforeMount(async () => {
   height: auto;
 }
 
-/*
 section {
   display: flex;
-  flex-direction: space-between;
-  justify-content: center;
-  /* gap: 1em; */
-
-
-p, span{
-  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  font-size: 18px;
+  flex-direction: column;
+  gap: 1em;
 }
 
-h1{
-  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
-
-
+section,
+p,
 .row {
   margin: 0 auto;
-  /* max-width: 60em; */
-  /* background-color: green; */
+  max-width: 60em;
 }
 
 article {
-  background-color: white;
-  border-radius: 2em;
+  background-color: var(--base-bg);
+  border-radius: 1em;
   display: flex;
   flex-direction: column;
   gap: 0.5em;
-  padding: 2em;
-  max-width: 22%;
-  justify-content: space-between;
-  margin: 2em;
-  /* padding: 30px; */
-  /* padding: 2em; */
-  /* color: white; */
-
+  padding: 1em;
 }
 
 .services {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  border-radius: 2em;
-  background-color: #caedce;
-}
-
-.logo-pic{
-  max-height: 100px;
-  width: auto;
+  padding: 1em;
+  max-width: 400px;
 }
 
 .row {
   display: flex;
   margin: 0 auto;
-  /* max-width: 60em; */
+  max-width: 60em;
 }
 
 h4 {
   margin-bottom: 0px;
-  font-size: 22px;
-  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  color: #156b12;
-  letter-spacing: 1px;
 }
 
 label {
@@ -141,15 +106,9 @@ label {
 }
 
 .agree-btn {
-  background-color: #156b12;
-  color: #fcfbe1;
+  color: white;
+  background-color: #2196f3;
   margin-top: 2%;
-  border-radius: 12px;
-  font-size: 20px;
-  font-weight: 600;
-  padding-left: 15px;
-  padding-right: 15px;
-  margin-top: 20px;
 }
 
 form .btn-container {

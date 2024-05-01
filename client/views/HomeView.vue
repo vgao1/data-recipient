@@ -62,7 +62,7 @@ onBeforeMount(async () => {
     <h1>Home Page</h1>
     <section>
       <div v-if="isLoggedIn">
-        <h2>Welcome, {{ currentUsername }}!</h2>
+        <h1>Welcome {{ currentUsername }}!</h1>
         <form v-if="Object.keys(traceabilityCredentials).length == 0" class="pure-form pure-form-aligned" @submit.prevent="submitCredentials">
           <h3>Traceability Database Credentials</h3>
           <fieldset>
@@ -95,37 +95,18 @@ onBeforeMount(async () => {
 <style scoped>
 h1 {
   text-align: center;
-  background-color: #156b12;
-  color: white;
-  padding: 12px;
-  margin-top: 0;
-  margin-bottom: 0;
-  font-size: 30px;
-  font-weight: 600;
-  letter-spacing: 1px;
-}
-
-h2 {
-  text-align: center;
-  background-color: #fcfbe1;
-  margin-top: 0;
-  margin-bottom: 0;
-  letter-spacing: 1px;
-  color:#156b12;
-  font-size: 30px;
 }
 
 .row {
   display: flex;
   justify-content: space-between;
   margin: 0 auto;
-  /* max-width: 60em; */
-  background-color: #fcfbe1;
+  max-width: 60em;
 }
 
-div{
-  background-color: #fcfbe1;
-  padding: 20px;
+.service-container {
+  width: 500px;
+  height: 500px;
 }
 
 h3 {
