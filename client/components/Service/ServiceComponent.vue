@@ -41,7 +41,6 @@ onBeforeMount(async () => {
 </script>
 <template>
   <div class="row">
-
     <section class="services" v-if="loaded && props.allServices.length !== 0">
       <article v-for="service in props.allServices" :key="service._id">
         <img class="logo-pic" v-if="service.logoURL !== null" :src="service.logoURL" />
@@ -57,9 +56,7 @@ onBeforeMount(async () => {
         </div>
       </article>
     </section>
-
-</div>
-
+  </div>
 </template>
 <style>
 .logo-pic {
@@ -74,16 +71,37 @@ section {
   justify-content: center;
   /* gap: 1em; */
 
-
-p, span{
-  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+p,
+span {
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
   font-size: 18px;
 }
 
-h1{
-  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+h1 {
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
 }
-
 
 .row {
   margin: 0 auto;
@@ -104,7 +122,6 @@ article {
   /* padding: 30px; */
   /* padding: 2em; */
   /* color: white; */
-
 }
 
 .services {
@@ -117,7 +134,7 @@ article {
   background-color: #caedce;
 }
 
-.logo-pic{
+.logo-pic {
   max-height: 100px;
   width: auto;
 }
@@ -131,7 +148,18 @@ article {
 h4 {
   margin-bottom: 0px;
   font-size: 22px;
-  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
   color: #156b12;
   letter-spacing: 1px;
 }
