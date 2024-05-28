@@ -6,19 +6,30 @@ export interface ConsentDoc extends BaseDoc {
   data_subject: ObjectId;
   description: string;
   service_id: ObjectId;
-  data_recipient: ObjectId;
+  data_provider: string;
+  data_recipient: string;
   consents: Array<Record<string, string>>;
+}
+
+export interface RequestDoc extends BaseDoc {
+  data_subject: ObjectId;
+  data_provider: string;
+  data_recipient: string;
+  description: string;
+  service_id: ObjectId;
+  data: Array<Record<string, string>>;
 }
 
 export default class ConsentRecordConcept {
   public readonly consentRecords = new DocCollection<ConsentDoc>("consent-record");
+  public readonly dataRequests = new DocCollection<RequestDoc>("data-request");
 
-  async addRecord(time: string, data_subject: ObjectId, description: string, service_id: ObjectId, data_recipient: ObjectId, consents: Array<Record<string, string>>) {
-    const existingRecord = await this.getRecords({ data_subject, service_id, data_recipient });
+  async addRecord(time: string, data_subject: ObjectId, description: string, service_id: ObjectId, data_provider: string, data_recipient: string, consents: Array<Record<string, string>>) {
+    const existingRecord = await this.getRecords({ data_subject, service_id, data_provider, data_recipient });
     let msg = "";
     let record_id = new ObjectId();
     if (existingRecord.length == 0) {
-      record_id = await this.consentRecords.createOne({ time, data_subject, description, service_id, data_recipient, consents });
+      record_id = await this.consentRecords.createOne({ time, data_subject, description, service_id, data_provider, data_recipient, consents });
       msg = "Consent Record successfully created!";
     } else {
       const firstRecord = existingRecord[0];
@@ -26,6 +37,7 @@ export default class ConsentRecordConcept {
       await this.consentRecords.updateOne({ _id: record_id }, { consents });
       msg = "Consent Record successfully updated!";
     }
+    await this.dataRequests.createOne({ data_subject, data_provider, data_recipient, description, service_id, data: consents });
     return { msg, record: await this.consentRecords.readOne({ record_id }) };
   }
 
