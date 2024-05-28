@@ -1,5 +1,5 @@
 import { Router, getExpressRouter } from "./framework/router";
-import { User, WebSession, Service, ConsentRecord, Traceability, DataSharing } from "./app";
+import { User, WebSession, Service, ConsentRecord, DataSharing } from "./app";
 import { UserDoc } from "./concepts/user";
 import { WebSessionDoc } from "./concepts/websession";
 import { ObjectId } from "mongodb";
@@ -79,20 +79,6 @@ class Routes {
     const user = WebSession.getUser(session);
     const service_id = ObjectId.createFromHexString(service_id_str);
     return await ConsentRecord.revokeConsent(user, service_id);
-  }
-
-  @Router.get("/traceabilitycredentials")
-  async getTraceabilityCredentials(session: WebSessionDoc) {
-    const userId = WebSession.getUser(session);
-    const record = await Traceability.getCredentials(userId);
-    return record;
-  }
-
-  @Router.post("/traceabilitycredentials")
-  async addTraceabilityCredentials(session: WebSessionDoc, db_srv: string, db_username: string, db_password: string) {
-    const userId = WebSession.getUser(session);
-    const added = await Traceability.addCredentials(userId, db_srv, db_username, db_password);
-    return { msg: added.msg, record: added.record };
   }
 
   @Router.get("/dataProvider/:username")
