@@ -116,7 +116,7 @@ article {
   flex-direction: column;
   gap: 0.5em;
   padding: 2em;
-  max-width: 22%;
+  max-width: 100%;
   justify-content: space-between;
   margin: 2em;
   /* padding: 30px; */
@@ -125,13 +125,13 @@ article {
 }
 
 .services {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns */
   padding-top: 20px;
   padding-bottom: 20px;
   border-radius: 2em;
   background-color: #caedce;
+  max-width: 100%;
 }
 
 .logo-pic {

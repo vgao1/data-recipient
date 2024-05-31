@@ -13,6 +13,12 @@ let isDataProvider = ref(false);
 
 onBeforeMount(async () => {
   await checkDataProvider();
+  if (currentUsername.value !== "admin" && !isDataProvider.value) {
+    const logoutBtn = document.getElementById("logout-btn");
+    if (logoutBtn) {
+      logoutBtn.style.marginTop = "30px";
+    }
+  }
   loaded.value = true;
 });
 
@@ -64,7 +70,7 @@ async function processResponse() {
   <main class="column">
     <button v-if="isDataProvider" class="pure-button" id="process-request-btn" @click="processRequest">Process Data Requests</button>
     <button v-if="currentUsername === 'admin'" class="pure-button" id="process-response-btn" @click="processResponse">Process Data Responses</button>
-    <button class="pure-button pure-button-primary" @click="logout">Logout</button>
+    <button class="pure-button pure-button-primary" id="logout-btn" @click="logout">Logout</button>
     <button class="button-error pure-button" @click="delete_">Delete User</button>
     <UpdateUserForm />
   </main>

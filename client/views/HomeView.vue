@@ -67,6 +67,8 @@ async function addService() {
     service.value = "";
     purpose.value = "";
     data_provider.value = "";
+    optionalFields.value = [{ value: "" }];
+    requiredFields.value = [{ value: "" }];
     required_data = [];
     optional_data = [];
     logoURL.value = "";
@@ -88,10 +90,10 @@ onBeforeMount(async () => {
     <section>
       <div v-if="isLoggedIn">
         <h2>Welcome, {{ currentUsername }}!</h2>
-        <div v-if="loaded && currentUsername !== 'admin'" class="service-container row">
+        <div v-if="loaded && currentUsername !== 'admin' && allServices.length > 0" class="service-container row">
           <ServiceComponent :allServices="allServices" />
         </div>
-        <div v-else-if="loaded">
+        <div v-else-if="loaded && currentUsername === 'admin'">
           <form class="pure-form pure-form-aligned" @submit.prevent="addService">
             <h3>Add a Service</h3>
             <fieldset>
@@ -134,7 +136,6 @@ onBeforeMount(async () => {
           </form>
         </div>
       </div>
-      <h1 v-else-if="loaded">Please login!</h1>
     </section>
   </main>
 </template>
@@ -166,7 +167,7 @@ h2 {
   display: flex;
   justify-content: space-between;
   margin: 0 auto;
-  /* max-width: 60em; */
+  max-width: 100%;
   background-color: #fcfbe1;
 }
 
