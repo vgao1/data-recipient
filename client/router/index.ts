@@ -13,7 +13,13 @@ const router = createRouter({
     {
       path: "/",
       name: "Home",
-      component: LoginView,
+      component: HomeView,
+      beforeEnter: (to, from) => {
+        const { isLoggedIn } = storeToRefs(useUserStore());
+        if (!isLoggedIn.value) {
+          return { name: "Login" };
+        }
+      },
     },
     {
       path: "/services",
