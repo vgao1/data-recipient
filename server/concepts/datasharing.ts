@@ -21,6 +21,7 @@ export interface ResponseDoc extends BaseDoc {
   data_recipient: string;
   data: Record<string, string>;
   data_subject: ObjectId;
+  description: string;
 }
 
 export interface RequestDoc extends BaseDoc {
@@ -50,6 +51,7 @@ export default class DataSharingConcept {
         }
         const data_recipient = request.data_recipient;
         const data_subject = request.data_subject;
+        const description = request.description;
         const providerData = await this.providerData.readOne({ data_subject, data_provider });
         if (providerData) {
           const data: Record<string, string> = {};
@@ -58,8 +60,8 @@ export default class DataSharingConcept {
               data[field] = providerData.data[field];
             }
           }
-          await this.dataResponses.createOne({ data_provider, data_recipient, data, data_subject });
-          await this.providerTraceabilityRecord.createOne({ data_provider, data_recipient, data: request.data, data_subject });
+          await this.dataResponses.createOne({ data_provider, data_recipient, data, data_subject, description });
+          await this.providerTraceabilityRecord.createOne({ data_provider, data_recipient, data: request.data, data_subject, description });
           await this.dataRequests.deleteOne({ _id: request._id });
         }
       }
@@ -69,6 +71,7 @@ export default class DataSharingConcept {
   async processResponse() {
     const responses = await this.dataResponses.readMany({});
     for (const response of responses) {
+      const description = response.description;
       const data_provider = response.data_provider;
       const data_recipient = response.data_recipient;
       const data_subject = response.data_subject;
@@ -91,6 +94,7 @@ export default class DataSharingConcept {
         data_recipient,
         data_subject,
         data: recordArray,
+        description,
       });
       await this.dataResponses.deleteOne({ _id: response_id });
     }
